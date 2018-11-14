@@ -1,0 +1,1073 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="中国标准时间">
+<General productName="HP Unified Functional Testing" productVer="11.50" os="Windows 7" host="VICTOR-PC"><DocLocation><![CDATA[C:\Unified Functional Testing\4.0\20170328-HMC-H5-比价-模块化]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[20170328-HMC-H5-比价-模块化]]></DName>
+<Res><![CDATA[Res3]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" ShowDifference="False">
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[00-MainAction]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:46]]></Time>
+<TimeTick>1494583606</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Run "C:\Users\Victor\Desktop\deletefolder.vbs",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "C:\Users\Victor\Desktop\deletefolder.vbs",1]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:46]]></Time>
+<TimeTick>1494583606</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="11" status="Passed" Source="00-MainAction" SourceLine="9" >
+<Disp><![CDATA[Run "C:\Users\Victor\Desktop\deletefolder.vbs",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="10" status="Passed" Source="00-MainAction" SourceLine="9" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Action rID="T7">
+<AName><![CDATA[01-HomeAction]]></AName>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:47]]></Time>
+<TimeTick>1494583607</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Run "chrome.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "chrome.exe",1]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:47]]></Time>
+<TimeTick>1494583607</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="16" status="Passed" Source="01-HomeAction" SourceLine="5" >
+<Disp><![CDATA[Run "chrome.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="15" status="Passed" Source="01-HomeAction" SourceLine="5" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:50]]></Time>
+<TimeTick>1494583610</TimeTick>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[好买车-首页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:50]]></Time>
+<TimeTick>1494583610</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[好买车-首页.Sync]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:50]]></Time>
+<TimeTick>1494583610</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="21" Source="01-HomeAction" SourceLine="8" >
+<Disp><![CDATA[好买车-首页.Sync]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[选车去比价-按钮.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:51]]></Time>
+<TimeTick>1494583611</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="24" Source="01-HomeAction" SourceLine="10" >
+<Disp><![CDATA[选车去比价-按钮.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="20" Source="01-HomeAction" SourceLine="8" >
+<Disp><![CDATA[好买车-首页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="19" Source="01-HomeAction" SourceLine="8" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:06:47" eTime="2017/5/12 - 18:06:51" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="12" status="Passed" >
+<Disp><![CDATA[01-HomeAction Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T14">
+<AName><![CDATA[02-CarBrand-Chevrolet]]></AName>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:52]]></Time>
+<TimeTick>1494583612</TimeTick>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[好买车-首页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:52]]></Time>
+<TimeTick>1494583612</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[雪佛兰-品牌.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:52]]></Time>
+<TimeTick>1494583612</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="31" Source="02-CarBrand-Chevrolet" SourceLine="3" >
+<Disp><![CDATA[雪佛兰-品牌.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[科迈罗.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:54]]></Time>
+<TimeTick>1494583614</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="34" Source="02-CarBrand-Chevrolet" SourceLine="6" >
+<Disp><![CDATA[科迈罗.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="30" Source="02-CarBrand-Chevrolet" SourceLine="3" >
+<Disp><![CDATA[好买车-首页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="29" Source="02-CarBrand-Chevrolet" SourceLine="3" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:06:51" eTime="2017/5/12 - 18:06:54" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="26" >
+<Disp><![CDATA[02-CarBrand-Chevrolet Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T19">
+<AName><![CDATA[03-Trad-Step1]]></AName>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:55]]></Time>
+<TimeTick>1494583615</TimeTick>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:55]]></Time>
+<TimeTick>1494583615</TimeTick>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[车型详情页.Sync]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:55]]></Time>
+<TimeTick>1494583615</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="41" Source="03-Trad-Step1" SourceLine="3" >
+<Disp><![CDATA[车型详情页.Sync]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[选定比价.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:56]]></Time>
+<TimeTick>1494583616</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="44" Source="03-Trad-Step1" SourceLine="6" >
+<Disp><![CDATA[选定比价.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="40" Source="03-Trad-Step1" SourceLine="3" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="39" Source="03-Trad-Step1" SourceLine="3" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:06:54" eTime="2017/5/12 - 18:06:57" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="36" >
+<Disp><![CDATA[03-Trad-Step1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T24">
+<AName><![CDATA[05-CarColor-Chevrolet]]></AName>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:58]]></Time>
+<TimeTick>1494583618</TimeTick>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:58]]></Time>
+<TimeTick>1494583618</TimeTick>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[车型详情页.Sync]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:58]]></Time>
+<TimeTick>1494583618</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="51" Source="05-CarColor-Chevrolet" SourceLine="3" >
+<Disp><![CDATA[车型详情页.Sync]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[布鲁斯蓝.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:06:59]]></Time>
+<TimeTick>1494583619</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="54" Source="05-CarColor-Chevrolet" SourceLine="5" >
+<Disp><![CDATA[布鲁斯蓝.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="50" Source="05-CarColor-Chevrolet" SourceLine="3" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="49" Source="05-CarColor-Chevrolet" SourceLine="3" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:06:57" eTime="2017/5/12 - 18:06:59" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="46" >
+<Disp><![CDATA[05-CarColor-Chevrolet Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T29">
+<AName><![CDATA[06-License-huA]]></AName>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:00]]></Time>
+<TimeTick>1494583620</TimeTick>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:00]]></Time>
+<TimeTick>1494583620</TimeTick>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[牌照选择-上沪牌.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:00]]></Time>
+<TimeTick>1494583620</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="61" Source="06-License-huA" SourceLine="2" >
+<Disp><![CDATA[牌照选择-上沪牌.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="60" Source="06-License-huA" SourceLine="2" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="59" Source="06-License-huA" SourceLine="2" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:06:59" eTime="2017/5/12 - 18:07:01" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="56" >
+<Disp><![CDATA[06-License-huA Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T33">
+<AName><![CDATA[07-PayModel-AllPay]]></AName>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:01]]></Time>
+<TimeTick>1494583621</TimeTick>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:01]]></Time>
+<TimeTick>1494583621</TimeTick>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[购车方式-全款购车.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:01]]></Time>
+<TimeTick>1494583621</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="68" Source="07-PayModel-AllPay" SourceLine="2" >
+<Disp><![CDATA[购车方式-全款购车.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="67" Source="07-PayModel-AllPay" SourceLine="2" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="66" Source="07-PayModel-AllPay" SourceLine="2" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:07:01" eTime="2017/5/12 - 18:07:02" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="63" >
+<Disp><![CDATA[07-PayModel-AllPay Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T37">
+<AName><![CDATA[08-PurchaseTime-m3Month]]></AName>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:02]]></Time>
+<TimeTick>1494583622</TimeTick>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:02]]></Time>
+<TimeTick>1494583622</TimeTick>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[购车时间-3个月以后.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:02]]></Time>
+<TimeTick>1494583622</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="75" Source="08-PurchaseTime-m3Month" SourceLine="2" >
+<Disp><![CDATA[购车时间-3个月以后.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="74" Source="08-PurchaseTime-m3Month" SourceLine="2" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="73" Source="08-PurchaseTime-m3Month" SourceLine="2" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:07:02" eTime="2017/5/12 - 18:07:03" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="70" >
+<Disp><![CDATA[08-PurchaseTime-m3Month Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T41">
+<AName><![CDATA[09-Area]]></AName>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:03]]></Time>
+<TimeTick>1494583623</TimeTick>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:03]]></Time>
+<TimeTick>1494583623</TimeTick>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[区域-浦东.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:03]]></Time>
+<TimeTick>1494583623</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="82" Source="09-Area" SourceLine="2" >
+<Disp><![CDATA[区域-浦东.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[商圈-金桥.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:05]]></Time>
+<TimeTick>1494583625</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="85" Source="09-Area" SourceLine="4" >
+<Disp><![CDATA[商圈-金桥.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="81" Source="09-Area" SourceLine="2" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="80" Source="09-Area" SourceLine="2" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:07:03" eTime="2017/5/12 - 18:07:06" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="77" >
+<Disp><![CDATA[09-Area Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T46">
+<AName><![CDATA[10-Trad-Step9]]></AName>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:07]]></Time>
+<TimeTick>1494583627</TimeTick>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:07]]></Time>
+<TimeTick>1494583627</TimeTick>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[最后的一个下一步.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:07]]></Time>
+<TimeTick>1494583627</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="92" Source="10-Trad-Step9" SourceLine="3" >
+<Disp><![CDATA[最后的一个下一步.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="91" Source="10-Trad-Step9" SourceLine="3" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="90" Source="10-Trad-Step9" SourceLine="3" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:07:06" eTime="2017/5/12 - 18:07:07" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="87" >
+<Disp><![CDATA[10-Trad-Step9 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T50">
+<AName><![CDATA[11-RegisterLogin]]></AName>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:08]]></Time>
+<TimeTick>1494583628</TimeTick>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:08]]></Time>
+<TimeTick>1494583628</TimeTick>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[用户手机号码.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:08]]></Time>
+<TimeTick>1494583628</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="99" Source="11-RegisterLogin" SourceLine="3" >
+<Disp><![CDATA[用户手机号码.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[老用户提示语.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:15]]></Time>
+<TimeTick>1494583635</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="136" Source="11-RegisterLogin" SourceLine="24" >
+<Disp><![CDATA[老用户提示语.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[获取验证码.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:16]]></Time>
+<TimeTick>1494583636</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="140" Source="11-RegisterLogin" SourceLine="52" >
+<Disp><![CDATA[获取验证码.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="98" Source="11-RegisterLogin" SourceLine="3" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="97" Source="11-RegisterLogin" SourceLine="3" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Action rID="T56">
+<AName><![CDATA[12-AdminLogin]]></AName>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:17]]></Time>
+<TimeTick>1494583637</TimeTick>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA[Run "IExplore.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "IExplore.exe",1]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:17]]></Time>
+<TimeTick>1494583637</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="145" status="Passed" Source="12-AdminLogin" SourceLine="3" >
+<Disp><![CDATA[Run "IExplore.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="144" status="Passed" Source="12-AdminLogin" SourceLine="3" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T59">
+<Obj plainTxt="False" ><![CDATA[管理后台系统界面]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:18]]></Time>
+<TimeTick>1494583638</TimeTick>
+<Step rID="T60">
+<Obj plainTxt="False" ><![CDATA["管理后台系统界面"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (2 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=管理后台系统界面<SPAN class=passed> (Used</SPAN>, 2 matches)</SPAN><br>title=管理后台系统界面<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>openurl=res://ieframe.dll/securityatrisk.htm<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=安全设置风险<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hasstatusbar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hasmenubar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hastoolbar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:18]]></Time>
+<TimeTick>1494583638</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="148" Source="12-AdminLogin" SourceLine="6" >
+<Disp><![CDATA["管理后台系统界面"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA[管理后台系统界面]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:18]]></Time>
+<TimeTick>1494583638</TimeTick>
+<Step rID="T62">
+<Obj plainTxt="False" ><![CDATA[管理后台系统界面.Sync]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:18]]></Time>
+<TimeTick>1494583638</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="151" Source="12-AdminLogin" SourceLine="6" >
+<Disp><![CDATA[管理后台系统界面.Sync]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA[用户名输入框.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["admin"]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:22]]></Time>
+<TimeTick>1494583642</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="154" Source="12-AdminLogin" SourceLine="8" >
+<Disp><![CDATA[用户名输入框.Set]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="150" Source="12-AdminLogin" SourceLine="6" >
+<Disp><![CDATA[管理后台系统界面]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="147" Source="12-AdminLogin" SourceLine="6" >
+<Disp><![CDATA[管理后台系统界面]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA[管理后台系统界面_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:22]]></Time>
+<TimeTick>1494583642</TimeTick>
+<Step rID="T65">
+<Obj plainTxt="False" ><![CDATA["管理后台系统界面_2"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (2 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=管理后台系统界面<SPAN class=passed> (Used</SPAN>, 2 matches)</SPAN><br>title=管理后台系统界面<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>openurl=http://oms-test.haomaiche.com/admin/login.html<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=管理后台系统界面<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hasstatusbar=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hasmenubar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hastoolbar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:22]]></Time>
+<TimeTick>1494583642</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="157" Source="12-AdminLogin" SourceLine="11" >
+<Disp><![CDATA["管理后台系统界面_2"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA[管理后台系统界面]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:22]]></Time>
+<TimeTick>1494583642</TimeTick>
+<Step rID="T67">
+<Obj plainTxt="False" ><![CDATA[userPassword.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Hmc1234"]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:22]]></Time>
+<TimeTick>1494583642</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="160" Source="12-AdminLogin" SourceLine="11" >
+<Disp><![CDATA[userPassword.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA[login.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:22]]></Time>
+<TimeTick>1494583642</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="163" Source="12-AdminLogin" SourceLine="14" >
+<Disp><![CDATA[login.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="159" Source="12-AdminLogin" SourceLine="11" >
+<Disp><![CDATA[管理后台系统界面]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="156" Source="12-AdminLogin" SourceLine="11" >
+<Disp><![CDATA[管理后台系统界面_2]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:07:17" eTime="2017/5/12 - 18:07:22" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="141" status="Passed" >
+<Disp><![CDATA[12-AdminLogin Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T69">
+<AName><![CDATA[13-VerifyCode]]></AName>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[管理后台系统界面]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:24]]></Time>
+<TimeTick>1494583644</TimeTick>
+<Step rID="T71">
+<Obj plainTxt="False" ><![CDATA["管理后台系统界面"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (2 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=系统主界面<SPAN class=passed> (Used</SPAN>, 2 matches)</SPAN><br>title=系统主界面<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>openurl=res://ieframe.dll/securityatrisk.htm<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=安全设置风险<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hasstatusbar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hasmenubar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>hastoolbar=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:24]]></Time>
+<TimeTick>1494583644</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="168" Source="13-VerifyCode" SourceLine="2" >
+<Disp><![CDATA["管理后台系统界面"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T72">
+<Obj plainTxt="False" ><![CDATA[系统主界面]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:24]]></Time>
+<TimeTick>1494583644</TimeTick>
+<Step rID="T73">
+<Obj plainTxt="False" ><![CDATA[系统主界面.Sync]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:24]]></Time>
+<TimeTick>1494583644</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="171" Source="13-VerifyCode" SourceLine="2" >
+<Disp><![CDATA[系统主界面.Sync]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T74">
+<Obj plainTxt="False" ><![CDATA[短信管理-菜单.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:24]]></Time>
+<TimeTick>1494583644</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="174" Source="13-VerifyCode" SourceLine="3" >
+<Disp><![CDATA[短信管理-菜单.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T75">
+<Obj plainTxt="False" ><![CDATA[发件箱-短信管理.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:24]]></Time>
+<TimeTick>1494583644</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="177" Source="13-VerifyCode" SourceLine="4" >
+<Disp><![CDATA[发件箱-短信管理.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T76">
+<Obj plainTxt="False" ><![CDATA[查询条件框架]]></Obj>
+<Details plainTxt="False" ><![CDATA[Frame]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:26]]></Time>
+<TimeTick>1494583646</TimeTick>
+<Step rID="T77">
+<Obj plainTxt="False" ><![CDATA[手机-查询条件.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["13020003126"]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:26]]></Time>
+<TimeTick>1494583646</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="181" Source="13-VerifyCode" SourceLine="9" >
+<Disp><![CDATA[手机-查询条件.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T78">
+<Obj plainTxt="False" ><![CDATA[查询按钮.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:27]]></Time>
+<TimeTick>1494583647</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="184" Source="13-VerifyCode" SourceLine="10" >
+<Disp><![CDATA[查询按钮.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T79">
+<Obj plainTxt="False" ><![CDATA["短信结果表":Function Call]]></Obj>
+<Details plainTxt="False" ><![CDATA[CellText]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:42]]></Time>
+<TimeTick>1494583662</TimeTick>
+<NodeArgs eType="General" icon="15" nRep="186" >
+<Disp><![CDATA["短信结果表":Function Call]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="14" nRep="180" Source="13-VerifyCode" SourceLine="9" >
+<Disp><![CDATA[查询条件框架]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="170" Source="13-VerifyCode" SourceLine="2" >
+<Disp><![CDATA[系统主界面]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="167" Source="13-VerifyCode" SourceLine="2" >
+<Disp><![CDATA[管理后台系统界面]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:07:22" eTime="2017/5/12 - 18:07:42" passed="0" failed="0" warnings="0" ><Param ><ParamName><![CDATA[phoneRan]]></ParamName><ParamVal><![CDATA[13020003126]]></ParamVal>
+</Param>
+<Param ><ParamName><![CDATA[isOlduser]]></ParamName><ParamVal><![CDATA[1]]></ParamVal>
+</Param>
+<Param paramInOut = "Out"><ParamName><![CDATA[verifyCode]]></ParamName><ParamVal><![CDATA[7211]]></ParamVal>
+</Param>
+</Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="165" >
+<Disp><![CDATA[13-VerifyCode Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T80">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:46]]></Time>
+<TimeTick>1494583666</TimeTick>
+<Step rID="T81">
+<Obj plainTxt="False" ><![CDATA[车型详情页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:46]]></Time>
+<TimeTick>1494583666</TimeTick>
+<Step rID="T82">
+<Obj plainTxt="False" ><![CDATA[输入验证码.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:46]]></Time>
+<TimeTick>1494583666</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="192" Source="11-RegisterLogin" SourceLine="69" >
+<Disp><![CDATA[输入验证码.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T83">
+<Obj plainTxt="False" ><![CDATA[新用户昵称.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:48]]></Time>
+<TimeTick>1494583668</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="195" Source="11-RegisterLogin" SourceLine="80" >
+<Disp><![CDATA[新用户昵称.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T84">
+<Obj plainTxt="False" ><![CDATA[新用户昵称.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["自动化1"]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:49]]></Time>
+<TimeTick>1494583669</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="198" Source="11-RegisterLogin" SourceLine="82" >
+<Disp><![CDATA[新用户昵称.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T85">
+<Obj plainTxt="False" ><![CDATA[新用户昵称.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:50]]></Time>
+<TimeTick>1494583670</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="201" Source="11-RegisterLogin" SourceLine="84" >
+<Disp><![CDATA[新用户昵称.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T86">
+<Obj plainTxt="False" ><![CDATA[确定.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:52]]></Time>
+<TimeTick>1494583672</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="204" Source="11-RegisterLogin" SourceLine="88" >
+<Disp><![CDATA[确定.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T87">
+<Obj plainTxt="False" ><![CDATA[我知道了.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:53]]></Time>
+<TimeTick>1494583673</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="207" Source="11-RegisterLogin" SourceLine="146" >
+<Disp><![CDATA[我知道了.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T88">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:56]]></Time>
+<TimeTick>1494583676</TimeTick>
+<Step rID="T89">
+<Obj plainTxt="False" ><![CDATA[Run "chrome.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "chrome.exe",1]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:56]]></Time>
+<TimeTick>1494583676</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="211" status="Passed" Source="11-RegisterLogin" SourceLine="166" >
+<Disp><![CDATA[Run "chrome.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="210" status="Passed" Source="11-RegisterLogin" SourceLine="166" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="191" status="Passed" Source="11-RegisterLogin" SourceLine="69" >
+<Disp><![CDATA[车型详情页]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T90">
+<Obj plainTxt="False" ><![CDATA[个人中心]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:59]]></Time>
+<TimeTick>1494583679</TimeTick>
+<Step rID="T91">
+<Obj plainTxt="False" ><![CDATA[个人中心.Sync]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:07:59]]></Time>
+<TimeTick>1494583679</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="215" Source="11-RegisterLogin" SourceLine="170" >
+<Disp><![CDATA[个人中心.Sync]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T92">
+<Obj plainTxt="False" ><![CDATA[我的信息>.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:00]]></Time>
+<TimeTick>1494583680</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="218" Source="11-RegisterLogin" SourceLine="172" >
+<Disp><![CDATA[我的信息>.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="214" Source="11-RegisterLogin" SourceLine="170" >
+<Disp><![CDATA[个人中心]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T93">
+<Obj plainTxt="False" ><![CDATA[个人中心-退出]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:01]]></Time>
+<TimeTick>1494583681</TimeTick>
+<Step rID="T94">
+<Obj plainTxt="False" ><![CDATA[个人中心-退出.Sync]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:01]]></Time>
+<TimeTick>1494583681</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="222" Source="11-RegisterLogin" SourceLine="175" >
+<Disp><![CDATA[个人中心-退出.Sync]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T95">
+<Obj plainTxt="False" ><![CDATA[退出登录.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:02]]></Time>
+<TimeTick>1494583682</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="225" Source="11-RegisterLogin" SourceLine="178" >
+<Disp><![CDATA[退出登录.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="221" Source="11-RegisterLogin" SourceLine="175" >
+<Disp><![CDATA[个人中心-退出]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="190" status="Passed" Source="11-RegisterLogin" SourceLine="69" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:07:07" eTime="2017/5/12 - 18:08:02" passed="1" failed="0" warnings="0" ><Param ><ParamName><![CDATA[verifyCode]]></ParamName><ParamVal><![CDATA[]]></ParamVal>
+</Param>
+<Param paramInOut = "Out"><ParamName><![CDATA[phoneRan]]></ParamName><ParamVal><![CDATA[<Not Initialized>]]></ParamVal>
+</Param>
+<Param paramInOut = "Out"><ParamName><![CDATA[isOlduser]]></ParamName><ParamVal><![CDATA[<Not Initialized>]]></ParamVal>
+</Param>
+<Param paramInOut = "Out"><ParamName><![CDATA[orderNo]]></ParamName><ParamVal><![CDATA[<Not Initialized>]]></ParamVal>
+</Param>
+</Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="94" status="Passed" >
+<Disp><![CDATA[11-RegisterLogin Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T96">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:04]]></Time>
+<TimeTick>1494583684</TimeTick>
+<Step rID="T97">
+<Obj plainTxt="False" ><![CDATA[Run "C:\Users\Victor\Desktop\deletefolder.vbs",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "C:\Users\Victor\Desktop\deletefolder.vbs",1]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:04]]></Time>
+<TimeTick>1494583684</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="230" status="Passed" Source="00-MainAction" SourceLine="9" >
+<Disp><![CDATA[Run "C:\Users\Victor\Desktop\deletefolder.vbs",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="229" status="Passed" Source="00-MainAction" SourceLine="9" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Action rID="T98">
+<AName><![CDATA[01-HomeAction]]></AName>
+<Step rID="T99">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:05]]></Time>
+<TimeTick>1494583685</TimeTick>
+<Step rID="T100">
+<Obj plainTxt="False" ><![CDATA[Run "chrome.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "chrome.exe",1]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:05]]></Time>
+<TimeTick>1494583685</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="235" status="Passed" Source="01-HomeAction" SourceLine="5" >
+<Disp><![CDATA[Run "chrome.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="234" status="Passed" Source="01-HomeAction" SourceLine="5" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T101">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:05]]></Time>
+<TimeTick>1494583685</TimeTick>
+<Step rID="T102">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot identify the object "好买车" (of class Browser). Verify that this object's properties match an object currently displayed in your application.]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:05]]></Time>
+<TimeTick>1494583685</TimeTick>
+<Step rID="T103">
+<Obj plainTxt="False" ><![CDATA[好买车]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>Mercury Class = Browser<br>CreationTime = 0<br>|Title = 好买车<br>openurl = https://www.duba.com/?f=68_3_ch&--type=0<br>opentitle = 毒霸网址大全 - 最安全实用的网址导航<br>number of tabs = 1<br>]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:05]]></Time>
+<TimeTick>1494583685</TimeTick>
+<NodeArgs eType="Replay" icon="16" nRep="250" status="Warning" nType="Description" Source="01-HomeAction" SourceLine="8" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="249" status="Failed" nType="Run Error" Source="01-HomeAction" SourceLine="8" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T104">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:05]]></Time>
+<TimeTick>1494583685</TimeTick>
+<NodeArgs eType="General" icon="17" nRep="251" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="248" status="Failed" Source="01-HomeAction" SourceLine="8" >
+<Disp><![CDATA[好买车]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:08:05" eTime="2017/5/12 - 18:08:05" passed="1" failed="1" warnings="1" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="231" status="Failed" >
+<Disp><![CDATA[01-HomeAction Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T105">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:06]]></Time>
+<TimeTick>1494583686</TimeTick>
+<NodeArgs eType="General" icon="17" nRep="253" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:06:45" eTime="2017/5/12 - 18:08:06" passed="2" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Failed" >
+<Disp><![CDATA[00-MainAction Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[20170328-HMC-H5-比价-模块化 Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Step rID="T106">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[2017/5/12 - 18:08:06]]></Time>
+<TimeTick>1494583686</TimeTick>
+<NodeArgs eType="General" icon="18" nRep="256" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2017/5/12 - 18:06:43" eTime="2017/5/12 - 18:08:06" passed="6" failed="1" warnings="1" stopped="True" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test 20170328-HMC-H5-比价-模块化 Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
